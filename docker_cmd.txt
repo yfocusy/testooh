@@ -1,0 +1,23 @@
+
+
+sudo docker run -d -p 5555:4444 --name selenium-hub selenium/hub
+
+http://localhost:5555/grid/console
+http://localhost:5555/wd/hub
+
+
+sudo docker run -d --link selenium-hub:hub selenium/node-chrome
+sudo docker run -d --link selenium-hub:hub selenium/node-firefox
+
+sudo docker run -d --link selenium-hub:hub selenium/node-firefox-debug
+sudo docker run -d --link selenium-hub:hub selenium/node-firefox-debug --shm-size=512m
+sudo docker run -d --link selenium-hub:hub selenium/node-chrome-debug --shm-size=512m
+
+
+docker run -d -p 5900:5900 --link selenium-hub:hub selenium/node-chrome-debug
+docker run -d -p 5900:5900 --link selenium-hub:hub selenium/node-firefox-debug
+
+docker run -d --link selenium-hub:hub selenium/node-firefox-debug --shm-size=512m --name node1
+
+
+
